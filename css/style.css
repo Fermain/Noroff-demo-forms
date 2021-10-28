@@ -32,3 +32,6 @@ aside :last-child {
   background: var(--warning);
 }
 
+#form-responses {
+  min-height: 50vh;
+}
