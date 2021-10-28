@@ -15,27 +15,23 @@
     </header>
     <main>
       <div class="container">
-        <form>
+        <form id="length">
           <fieldset>
-            <legend>Phone Validation Example</legend>
+            <legend>String Length Example</legend>
             <div class="form-group">
-              <label for="examplePhoneInput1">Your phone number</label>
+              <label for="exampleMessageInput1">Message Subject</label>
               <input
-                type="tel"
+                type="text"
                 class="form-control"
-                id="examplePhoneInput1"
-                placeholder="004712345678"
-                pattern="(0047|\+47|47)?\d{8}"
-                title="Norwegian phone number format: Starting 0047, +47 or 47 followed by your 8 digit number with no spaces."
+                id="exampleMessageInput1"
+                placeholder="Hello World"
+                minlength="4"
+                maxlength="20"
                 required
               />
-              <small
-                >Make sure that you have entered a Norwegian phone
-                number.</small
-              >
             </div>
             <div class="form-group">
-              <button class="btn btn-primary">Submit</button>
+              <button class="btn btn-primary">Send Message</button>
             </div>
           </fieldset>
         </form>

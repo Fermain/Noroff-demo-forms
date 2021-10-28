@@ -1,50 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/style.css">
-  <title>Forms</title>
-</head>
-<body class="dark-theme">
-  <header>
-    <div class="container">
-      <h1><a href="/">HTML Forms</a></h1>
-    </div>
-  </header>
-  <main>
-    <div class="container">
-      <form>
-        <fieldset>
-          <legend>Contact Form Example</legend>
-          <div class="form-group">
-            <label for="exampleNameInput1">Your name</label>
-            <input type="text" class="form-control" id="exampleNameInput1"  placeholder="John Doe" required>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail2">Your email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail2"  placeholder="name@example.com" required>
-          </div>
-          <div class="form-group">
-            <label for="examplePhoneInput1">Your phone number</label>
-            <input type="tel" class="form-control" id="examplePhoneInput1"  placeholder="004712345678" pattern="(0047|\+47|47)?\d{8}" title="Norwegian phone number format: Starting 0047, +47 or 47 followed by your 8 digit number with no spaces." required>
-            <small>Make sure that you have entered a Norwegian phone number.</small>
-          </div>
-          <div class="form-group">
-            <label for="exampleMessageInput1">Message Subject</label>
-            <input type="text" class="form-control" id="exampleMessageInput1"  placeholder="Hello World" required>
-          </div>
-          <div class="form-group">
-            <label for="exampleTextArea1">Message</label>
-            <textarea id="exampleTextArea1" class="form-control" cols="30" rows="10" required></textarea>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-primary">Send Message</button>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-  </main>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Forms</title>
+  </head>
+  <body class="dark-theme">
+    <header>
+      <div class="container">
+        <h1><a href="/">HTML Forms</a></h1>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <form id="contact" action="/thank-you.html" method="GET">
+          <fieldset>
+            <legend>Contact Form Example</legend>
+            <div class="form-group">
+              <label for="exampleNameInput1">Your name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleNameInput1"
+                placeholder="John Doe"
+                name="name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="regex1">Your Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="regex1"
+                aria-describedby="regex1help"
+                pattern="^[a-z0-9_-]{3,16}$"
+                name="username"
+                required
+                placeholder="example-user_101"
+                title="3-16 character username containing only lowercase letters, numbers, underscore and hyphen"
+              />
+              <small id="regex1help"
+                >Make sure your username matches is between three and sixteen
+                characters, using only numbers, letters, hyphens and
+                underscores.</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail2">Your email address</label>
+              <input
+                type="email"
+                name="email"
+                class="form-control"
+                id="exampleInputEmail2"
+                placeholder="name@example.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="examplePhoneInput3">Your phone number</label>
+              <input
+                type="tel"
+                name="phone"
+                class="form-control"
+                id="examplePhoneInput3"
+                placeholder="004712345678"
+                pattern="(0047|\+47|47)?\d{8}"
+                title="Norwegian phone number format: Starting 0047, +47 or 47 followed by your 8 digit number with no spaces."
+                required
+              />
+              <small
+                >Make sure that you have entered a Norwegian phone
+                number.</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="exampleMessageInput2">Message Subject</label>
+              <input
+                type="text"
+                name="subject"
+                class="form-control"
+                id="exampleMessageInput2"
+                placeholder="Hello World"
+                minlength="4"
+                maxlength="20"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleTextArea1">Message</label>
+              <textarea
+                name="message"
+                id="exampleTextArea1"
+                class="form-control"
+                cols="30"
+                rows="10"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary">Send Message</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </main>
+  </body>
 </html>
