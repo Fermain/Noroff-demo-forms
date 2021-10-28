@@ -1,0 +1,25 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  text-align: left;
+  padding: 0.5rem;
+  background: var(--darker);
+  color: var(--light);
+}
+
+table td {
+  padding: 0.5rem;
+  background: var(--lighter);
+  color: var(--darkest);
+}
+
+table tbody tr:nth-child(odd) {
+  background: var(--light);
+}
+
+table td:first-child {
+  text-transform: capitalize;
+}

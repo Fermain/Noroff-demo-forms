@@ -4,6 +4,7 @@
 @import url('/css/form.css');
 @import url('/css/buttons.css');
 @import url('/css/search.css');
+@import url('/css/table.css');
 
 aside {
   border-left: 0.5rem solid var(--light);
@@ -30,3 +31,4 @@ aside :last-child {
   text-transform: uppercase;
   background: var(--warning);
 }
+
