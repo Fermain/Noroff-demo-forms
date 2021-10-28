@@ -28,10 +28,11 @@
                   <a href="#html-validation">HTML Validation</a>
                   <ul>
                     <li><a href="#search">Search Form</a></li>
+                    <li><a href="#length">String Length</a></li>
                     <li><a href="#email">Email Format</a></li>
-                    <li><a href="/examples/phone.html">Phone Format</a></li>
-                    <li><a href="/examples/pattern.html">Regex Patterns</a></li>
-                    <li><a href="/examples/contact.html">Contact Form</a></li>
+                    <li><a href="#pattern">Regex Patterns</a></li>
+                    <li><a href="#phone">Phone Format</a></li>
+                    <li><a href="#contact">Contact Form</a></li>
                   </ul>
                 </li>
                 <li class="hidden">
@@ -178,7 +179,6 @@
                   type="text"
                   name="term"
                   class="form-control"
-                  id="exampleSearchInput1"
                   required
                   placeholder="Search"
                 />
@@ -206,7 +206,6 @@
                   type="text"
                   name="term"
                   class="form-control"
-                  id="exampleSearchInput1"
                   required
                   placeholder="Search"
                 />
@@ -222,6 +221,27 @@
               page will be examined <a href="#form-responses">here</a>.
             </p>
           </aside>
+          <p>Often we want to limit how short or long the input string should be. To do this we can use <code>minlength</code> and <code>maxlength</code> to control the length.</p>
+          <form id="length">
+            <fieldset>
+              <legend>String Length Example</legend>
+              <div class="form-group">
+                <label for="exampleMessageInput1">Message Subject</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleMessageInput1"
+                  placeholder="Hello World"
+                  minlength="4"
+                  maxlength="20"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary">Send Message</button>
+              </div>
+            </fieldset>
+          </form>
           <p>
             We can introduce much more sophisticated behaviour than this using
             HTML validation, however. Some input cases are very common, and have
@@ -237,13 +257,248 @@
               <legend>Email Validation Example</legend>
               <div class="form-group">
                 <label for="exampleInputEmail1">Your email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1"  placeholder="name@example.com" required>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  placeholder="name@example.com"
+                  required
+                />
               </div>
               <div class="form-group">
                 <button class="btn btn-primary">Submit</button>
               </div>
             </fieldset>
           </form>
+          <p>
+            In some case we need special control over what is entered into the
+            input. For example, a username for a web service might have a limit
+            on which characters can be used. In this case, we can use the
+            <code>pattern</code> and <code>title</code> attributes to set these
+            limits.
+          </p>
+          <p>
+            The form below uses this regex pattern to limit input to a length
+            between 3 and 16 lowercase characters, numbers, hyphens and
+            underscores only.
+          </p>
+          <form id="pattern">
+            <fieldset>
+              <legend>Regex Pattern Example</legend>
+              <div class="form-group">
+                <label for="regex1">Your Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="regex1"
+                  aria-describedby="regex1help"
+                  pattern="^[a-z0-9_-]{3,16}$"
+                  required
+                  placeholder="example-user_101"
+                  title="3-16 character username containing only lowercase letters, numbers, underscore and hyphen"
+                />
+                <small id="regex1help"
+                  >Make sure your username matches is between three and sixteen
+                  characters, using only numbers, letters, hyphens and
+                  underscores.</small
+                >
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary">Submit</button>
+              </div>
+            </fieldset>
+          </form>
+          <p>
+            Notice how the warning message created by the browser contained a
+            helpful message, despite this being a custom rule. This is made
+            possible by the <code>title</code> attribute - which provides help
+            text to the browser.
+          </p>
+          <p>
+            A more common case where custom validation rules are needed is when
+            handling phone numbers. Since there is a large variety of formats
+            used around the world for phone numbers, it is impossible for HTML
+            validation to correctly validate them all. Consider this form, which
+            uses the appropriate <code>type="tel"</code> attribute without any
+            other form of validation:
+          </p>
+          <form id="phone-novalidation">
+            <fieldset>
+              <legend>Phone Validation Example</legend>
+              <div class="form-group">
+                <label for="examplePhoneInput1">Your phone number</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="examplePhoneInput1"
+                  placeholder="004712345678"
+                  required
+                />
+                <small
+                  >Make sure that you have entered a Norwegian phone
+                  number.</small
+                >
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary">Submit</button>
+              </div>
+            </fieldset>
+          </form>
+          <p>
+            This form field is not very fussy about what input it will accept.
+            Clearly a single number cannot be a phone number, yet this passes
+            the test. In order to tailor this input type to your specific needs,
+            you must consider nationality.
+          </p>
+          <p>
+            For example, Norway uses a different number format to the UK, USA or
+            South Africa. In order to specify which of these we want to target,
+            we must use another regular expression pattern.
+          </p>
+          <p>
+            In order to limit submission to only Norwegian numbers, we can use
+            this pattern: <code>(0047|\+47|47)?\d{8}</code>. This pattern
+            expects a national dialing code, accepted in a few formats, followed
+            by an 8 digit number.
+          </p>
+          <form id="phone">
+            <fieldset>
+              <legend>Pattern Phone Validation Example</legend>
+              <div class="form-group">
+                <label for="examplePhoneInput2">Your phone number</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="examplePhoneInput2"
+                  placeholder="004712345678"
+                  pattern="(0047|\+47|47)\d{8}"
+                  title="Norwegian phone number format: Starting 0047, +47 or 47 followed by your 8 digit number with no spaces."
+                  required
+                />
+                <small
+                  >Make sure that you have entered a Norwegian phone
+                  number.</small
+                >
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary">Submit</button>
+              </div>
+            </fieldset>
+          </form>
+          <aside>
+            <p>
+              If Regular Expressions look scary to you, don't worry - you aren't
+              alone. RegEx is always ugly, and few people write long RegEx
+              patterns directly. Instead there are tools available to find
+              preexisting patterns or to make it easier to assemble your own.
+            </p>
+            <p>
+              This is a great tool for prototyping patterns:
+              <a href="https://regex101.com/" target="_blank">RegEx 101</a>.
+            </p>
+            <p>
+              This resource has many common patterns:
+              <a href="https://projects.lukehaas.me/regexhub/" target="_blank"
+                >RegExHub</a
+              >.
+            </p>
+          </aside>
+          <p>
+            Although there are other validation attributes to explore, we now
+            have enough to create a complex contact form with a custom
+            validation strategy for different input elements.
+          </p>
+          <form id="contact" action="/thank-you.html" method="GET">
+            <fieldset>
+              <legend>Contact Form Example</legend>
+              <div class="form-group">
+                <label for="exampleNameInput1">Your name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleNameInput1"
+                  placeholder="John Doe"
+                  name="name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="regex1">Your Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="regex1"
+                  aria-describedby="regex1help"
+                  pattern="^[a-z0-9_-]{3,16}$"
+                  name="username"
+                  required
+                  placeholder="example-user_101"
+                  title="3-16 character username containing only lowercase letters, numbers, underscore and hyphen"
+                />
+                <small id="regex1help"
+                  >Make sure your username matches is between three and sixteen
+                  characters, using only numbers, letters, hyphens and
+                  underscores.</small
+                >
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail2">Your email address</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  id="exampleInputEmail2"
+                  placeholder="name@example.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="examplePhoneInput3">Your phone number</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  class="form-control"
+                  id="examplePhoneInput3"
+                  placeholder="004712345678"
+                  pattern="(0047|\+47|47)?\d{8}"
+                  title="Norwegian phone number format: Starting 0047, +47 or 47 followed by your 8 digit number with no spaces."
+                  required
+                />
+                <small
+                  >Make sure that you have entered a Norwegian phone
+                  number.</small
+                >
+              </div>
+              <div class="form-group">
+                <label for="exampleMessageInput2">Message Subject</label>
+                <input
+                  type="text"
+                  name="subject"
+                  class="form-control"
+                  id="exampleMessageInput2"
+                  placeholder="Hello World"
+                  minlength="4"
+                  maxlength="20"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleTextArea1">Message</label>
+                <textarea
+                  name="message"
+                  id="exampleTextArea1"
+                  class="form-control"
+                  cols="30"
+                  rows="10"
+                  required
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary">Send Message</button>
+              </div>
+            </fieldset>
+          </form>
+          <p>When you have correctly satisfied all of the inputs for this form, you will be taken to a thank you page where these values will be read in a similar way to the search form.</p>
         </section>
         <section id="form-responses"></section>
       </div>
