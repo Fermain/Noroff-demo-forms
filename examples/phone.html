@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Forms</title>
+</head>
+<body class="dark-theme">
+  <header>
+    <div class="container">
+      <h1><a href="/">HTML Forms</a></h1>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <form>
+        <fieldset>
+          <legend>Phone Validation Example</legend>
+          <div class="form-group">
+            <label for="examplePhoneInput1">Your phone number</label>
+            <input type="tel" class="form-control" id="examplePhoneInput1"  placeholder="004712345678" pattern="(0047|\+47|47)?\d{8}" title="Norwegian phone number format: Starting 0047, +47 or 47 followed by your 8 digit number with no spaces." required>
+            <small>Make sure that you have entered a Norwegian phone number.</small>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary">Submit</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </main>
+</body>
+</html>
