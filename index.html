@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/style.css" />
     <title>Forms</title>
   </head>
-  <body>
+  <body class="dark-theme">
     <header>
       <div class="container">
         <h1><a href="/">HTML Forms</a></h1>
@@ -27,10 +27,8 @@
                 <li>
                   <a href="#html-validation">HTML Validation</a>
                   <ul>
-                    <li>
-                      <a href="/examples/required.html">Required Fields</a>
-                    </li>
-                    <li><a href="/examples/email.html">Email Format</a></li>
+                    <li><a href="#search">Search Form</a></li>
+                    <li><a href="#email">Email Format</a></li>
                     <li><a href="/examples/phone.html">Phone Format</a></li>
                     <li><a href="/examples/pattern.html">Regex Patterns</a></li>
                     <li><a href="/examples/contact.html">Contact Form</a></li>
@@ -146,7 +144,108 @@
             a string of text designed to corrupt a database. This is called an
             SQL injection attack.
           </p>
+
+          <h3>HTML Validation</h3>
+          <p>
+            HTML5 introduced a powerful set of attributes that allow for
+            validation of form input elements without the need for complicated
+            javascript.
+          </p>
+          <p>
+            Using HTML validation is not simply about saving time writing code,
+            it also provides a highly accessible platform that can be used by
+            differently abled users. For example, the custom error message
+            created to alert a user that their email is in the wrong format
+            cannot reasonably be translated into every language. However the
+            error messages provided by HTML validation will use the Browser's
+            default language!
+          </p>
+          <p>
+            Since all of the validation happens in HTML, we can access the state
+            of the input via CSS by using <code>input:valid {}</code> or
+            <code>input:invalid {}</code>.
+          </p>
+          <p>
+            Try the search example below. This has been setup with the most
+            simple form of validation - the user must provide a minimum of one
+            character of any kind.
+          </p>
+          <form id="search-dummy">
+            <fieldset>
+              <legend>Search Example</legend>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="term"
+                  class="form-control"
+                  id="exampleSearchInput1"
+                  required
+                  placeholder="Search"
+                />
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary">Search</button>
+              </div>
+            </fieldset>
+          </form>
+          <p>
+            This form will not do anything when it is submitted, because it has
+            no <code>action</code> attribute.
+          </p>
+          <p>
+            If we add
+            <code>action="/examples/search.html" method="GET"</code> to the
+            <code>form</code> tag, it will redirect to this URL along with our
+            search values:
+          </p>
+          <form id="search" action="/examples/search.html" method="GET">
+            <fieldset>
+              <legend>Working Search Example</legend>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="term"
+                  class="form-control"
+                  id="exampleSearchInput1"
+                  required
+                  placeholder="Search"
+                />
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary">Search</button>
+              </div>
+            </fieldset>
+          </form>
+          <aside>
+            <p>
+              The javascript behaviour needed to utilise this on the destination
+              page will be examined <a href="#form-responses">here</a>.
+            </p>
+          </aside>
+          <p>
+            We can introduce much more sophisticated behaviour than this using
+            HTML validation, however. Some input cases are very common, and have
+            predictable formats that can be handled with specialised attributes.
+          </p>
+          <p>
+            For example, an email address has a standard format that is easy to
+            predict. It is also a very common input to collect from a user, so
+            we have a special input type that will automatically validate input:
+          </p>
+          <form id="email">
+            <fieldset>
+              <legend>Email Validation Example</legend>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Your email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1"  placeholder="name@example.com" required>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary">Submit</button>
+              </div>
+            </fieldset>
+          </form>
         </section>
+        <section id="form-responses"></section>
       </div>
     </main>
   </body>
