@@ -1,0 +1,20 @@
+.btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  margin: 0;
+  border: 1px solid var(--light);
+  background: var(--dark);
+  color: var(--lightest);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: light;
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.btn:hover {
+  background: var(--lighter);
+  color: var(--darkest);
+}

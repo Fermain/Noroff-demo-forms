@@ -1,0 +1,11 @@
+.dark-theme {
+  --bg: #1d1d1d;
+  --light: rgba(255,255,255,.5);
+  --lighter: rgba(255,255,255,.75);
+  --lightest: white;
+  --dark: rgba(0,0,0,.25);
+  --darker: rgba(0,0,0,.5);
+  --darkest: black;
+  --warning: rgb(255, 0, 0, 0.35);
+  --success: rgb(0, 128, 0, 0.35);
+}
