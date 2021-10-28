@@ -18,7 +18,24 @@
         <nav>
           <b>Navigation</b>
           <ul>
-            <li><a href="#introduction">Introduction</a></li>
+            <li>
+              <a href="#introduction">Introduction</a>
+              <ul>
+                <li>
+                  <a
+                    href="https://github.com/Fermain/Noroff-demo-forms"
+                    target="_blank"
+                    >GitHub Repository</a
+                  >
+                </li>
+                <li>
+                  <a href="#why">Why are forms important?</a>
+                </li>
+                <li>
+                  <a href="#anatomy">Anatomy of a Form</a>
+                </li>
+              </ul>
+            </li>
             <li>
               <a href="#validation">Validation</a>
               <ul>
@@ -68,6 +85,72 @@
             All form elements that accept user input, including Input and
             Textarea tags, should be wrapped inside a form element.
           </p>
+
+          <h3 id="why">Why are forms important?</h3>
+          <p>
+            When learning front end development, it is common to skip past HTML
+            and CSS in a rush to get to learning about JavaScript frameworks. In
+            so doing, many developers miss out on powerful tools that can save
+            them time and improve the quality of their code.
+          </p>
+          <p>
+            In reality, even when working with React, Vue, Angular, Svelte, or
+            any other framework - you will need a knowledge of form behaviour
+            one way or the other. In fact, there is a common thread that
+            connects HTML forms with any kind of AJAX requests you make using
+            JavaScript. Before AJAX existed, using a form was the only way to
+            send information to a server. When the REST pattern was introduced,
+            it used the same format to send data as a normal HTML form!
+          </p>
+          <p>
+            So, by learning about how HTML forms work in detail, you can also
+            learn something about HTTP Requests and how a server "sees" the data
+            you send to it. For those familiar with making API requests, you can
+            think of an HTML form as a "hand written" API request.
+          </p>
+
+          <h3 id="anatomy">Anatomy of a Form</h3>
+          <p>
+            An HTML form requires a minimum of three tags in order to function
+            properly: form, input and button. A valid form can be written with
+            surprisingly little markup:
+          </p>
+          <pre>
+&lt;form&gt;
+  &lt;input type="text"&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre
+          >
+
+          <p>
+            This form does not validate user input, nor does it send the data
+            anywhere once the button is pressed. In order to make the form do
+            something, we need to decorate it with attributes.
+          </p>
+          <pre>
+&lt;form action="/index.html#validation" method="GET"&gt;
+  &lt;input type="text" name="example" class="form-control"&gt;
+  &lt;button class="btn"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre
+          >
+
+          <p>
+            Now we have instructed the form to send the data provided back to
+            this page, and to move you to a specific part of the page. Try it
+            for yourself:
+          </p>
+          <form action="/index.html#success" method="GET">
+            <input type="text" name="example" class="form-control" />
+            <button class="btn">Submit</button>
+          </form>
+
+          <aside>
+            <h4 id="success">Success!</h4>
+            <p>
+              If the form took you straight here, everything worked as expected.
+              Check the URL bar in your browser to see the value you provided.
+            </p>
+          </aside>
         </section>
 
         <section id="validation">
@@ -152,7 +235,8 @@
             SQL injection attack.
           </p>
 
-          <h3>HTML Validation</h3>
+          <section id="html-validation">
+            <h3>HTML Validation</h3>
           <p>
             HTML5 introduced a powerful set of attributes that allow for
             validation of form input elements without the need for complicated
@@ -177,6 +261,26 @@
             simple form of validation - the user must provide a minimum of one
             character of any kind.
           </p>
+          <h4>Search Form</h4>
+          <pre>
+&lt;form id="search-dummy"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Search Example&lt;/legend&gt;
+    &lt;div class="form-group"&gt;
+      &lt;input
+        type="text"
+        name="term"
+        class="form-control"
+        required
+        placeholder="Search"
+      /&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;button class="btn btn-primary"&gt;Search&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</pre
+          >
           <form id="search-dummy">
             <fieldset>
               <legend>Search Example</legend>
@@ -204,6 +308,25 @@
             <code>form</code> tag, it will redirect to this URL along with our
             search values:
           </p>
+          <pre>
+&lt;form id="search" action="/examples/search.html" method="GET"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Working Search Example&lt;/legend&gt;
+    &lt;div class="form-group"&gt;
+      &lt;input
+        type="text"
+        name="term"
+        class="form-control"
+        required
+        placeholder="Search"
+      /&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;button class="btn btn-primary"&gt;Search&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+          </pre>
           <form id="search" action="/examples/search.html" method="GET">
             <fieldset>
               <legend>Working Search Example</legend>
@@ -227,11 +350,34 @@
               page will be examined <a href="#form-responses">here</a>.
             </p>
           </aside>
+          <h4>Length Form</h4>
           <p>
             Often we want to limit how short or long the input string should be.
             To do this we can use <code>minlength</code> and
             <code>maxlength</code> to control the length.
           </p>
+          <pre>
+&lt;form id="length"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;String Length Example&lt;/legend&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="exampleMessageInput1"&gt;Message Subject&lt;/label&gt;
+      &lt;input
+        type="text"
+        class="form-control"
+        id="exampleMessageInput1"
+        placeholder="Hello World"
+        minlength="4"
+        maxlength="20"
+        required
+      /&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;button class="btn btn-primary"&gt;Send Message&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+          </pre>
           <form id="length">
             <fieldset>
               <legend>String Length Example</legend>
@@ -257,11 +403,32 @@
             HTML validation, however. Some input cases are very common, and have
             predictable formats that can be handled with specialised attributes.
           </p>
+          <h4>Email Form</h4>
           <p>
             For example, an email address has a standard format that is easy to
             predict. It is also a very common input to collect from a user, so
             we have a special input type that will automatically validate input:
           </p>
+          <pre>
+&lt;form id="email"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Email Validation Example&lt;/legend&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="exampleInputEmail1"&gt;Your email address&lt;/label&gt;
+      &lt;input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        placeholder="name@example.com"
+        required
+      /&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;button class="btn btn-primary"&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+          </pre>
           <form id="email">
             <fieldset>
               <legend>Email Validation Example</legend>
@@ -280,6 +447,7 @@
               </div>
             </fieldset>
           </form>
+          <h4>Pattern Form</h4>
           <p>
             In some case we need special control over what is entered into the
             input. For example, a username for a web service might have a limit
@@ -292,6 +460,34 @@
             between 3 and 16 lowercase characters, numbers, hyphens and
             underscores only.
           </p>
+          <pre>
+&lt;form id="pattern"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Regex Pattern Example&lt;/legend&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="regex1"&gt;Your Username&lt;/label&gt;
+      &lt;input
+        type="text"
+        class="form-control"
+        id="regex1"
+        aria-describedby="regex1help"
+        pattern="^[a-z0-9_-]{3,16}$"
+        required
+        placeholder="example-user_101"
+        title="3-16 character username containing only lowercase letters, numbers, underscore and hyphen"
+      /&gt;
+      &lt;small id="regex1help"
+        &gt;Make sure your username matches is between three and sixteen
+        characters, using only numbers, letters, hyphens and
+        underscores.&lt;/small
+      &gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;button class="btn btn-primary"&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+          </pre>
           <form id="pattern">
             <fieldset>
               <legend>Regex Pattern Example</legend>
@@ -324,6 +520,7 @@
             possible by the <code>title</code> attribute - which provides help
             text to the browser.
           </p>
+          <h4>Phone Form</h4>
           <p>
             A more common case where custom validation rules are needed is when
             handling phone numbers. Since there is a large variety of formats
@@ -332,6 +529,30 @@
             uses the appropriate <code>type="tel"</code> attribute without any
             other form of validation:
           </p>
+          <pre>
+&lt;form id="phone-novalidation"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Phone Validation Example&lt;/legend&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="examplePhoneInput1"&gt;Your phone number&lt;/label&gt;
+      &lt;input
+        type="tel"
+        class="form-control"
+        id="examplePhoneInput1"
+        placeholder="004712345678"
+        required
+      /&gt;
+      &lt;small
+        &gt;Make sure that you have entered a Norwegian phone
+        number.&lt;/small
+      &gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;button class="btn btn-primary"&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+          </pre>
           <form id="phone-novalidation">
             <fieldset>
               <legend>Phone Validation Example</legend>
@@ -371,6 +592,32 @@
             expects a national dialing code, accepted in a few formats, followed
             by an 8 digit number.
           </p>
+          <pre>
+&lt;form id="phone"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Pattern Phone Validation Example&lt;/legend&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="examplePhoneInput2"&gt;Your phone number&lt;/label&gt;
+      &lt;input
+        type="tel"
+        class="form-control"
+        id="examplePhoneInput2"
+        placeholder="004712345678"
+        pattern="(0047|\+47|47)\d{8}"
+        title="Norwegian phone number format: Starting 0047, +47 or 47 followed by your 8 digit number with no spaces."
+        required
+      /&gt;
+      &lt;small
+        &gt;Make sure that you have entered a Norwegian phone
+        number.&lt;/small
+      &gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;button class="btn btn-primary"&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+          </pre>
           <form id="phone">
             <fieldset>
               <legend>Pattern Phone Validation Example</legend>
@@ -413,11 +660,104 @@
               >.
             </p>
           </aside>
+          <h4>Contact Form</h4>
           <p>
             Although there are other validation attributes to explore, we now
             have enough to create a complex contact form with a custom
             validation strategy for different input elements.
           </p>
+          <pre>
+&lt;form id="contact" action="/thank-you.html" method="GET"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Contact Form Example&lt;/legend&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="exampleNameInput1"&gt;Your name&lt;/label&gt;
+      &lt;input
+        type="text"
+        class="form-control"
+        id="exampleNameInput1"
+        placeholder="John Doe"
+        name="name"
+        required
+      /&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="regex1"&gt;Your Username&lt;/label&gt;
+      &lt;input
+        type="text"
+        class="form-control"
+        id="regex1"
+        aria-describedby="regex1help"
+        pattern="^[a-z0-9_-]{3,16}$"
+        name="username"
+        required
+        placeholder="example-user_101"
+        title="3-16 character username containing only lowercase letters, numbers, underscore and hyphen"
+      /&gt;
+      &lt;small id="regex1help"
+        &gt;Make sure your username matches is between three and sixteen
+        characters, using only numbers, letters, hyphens and
+        underscores.&lt;/small
+      &gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="exampleInputEmail2"&gt;Your email address&lt;/label&gt;
+      &lt;input
+        type="email"
+        name="email"
+        class="form-control"
+        id="exampleInputEmail2"
+        placeholder="name@example.com"
+        required
+      /&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="examplePhoneInput3"&gt;Your phone number&lt;/label&gt;
+      &lt;input
+        type="tel"
+        name="phone"
+        class="form-control"
+        id="examplePhoneInput3"
+        placeholder="004712345678"
+        pattern="(0047|\+47|47)?\d{8}"
+        title="Norwegian phone number format: Starting 0047, +47 or 47 followed by your 8 digit number with no spaces."
+        required
+      /&gt;
+      &lt;small
+        &gt;Make sure that you have entered a Norwegian phone
+        number.&lt;/small
+      &gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="exampleMessageInput2"&gt;Message Subject&lt;/label&gt;
+      &lt;input
+        type="text"
+        name="subject"
+        class="form-control"
+        id="exampleMessageInput2"
+        placeholder="Hello World"
+        minlength="4"
+        maxlength="20"
+        required
+      /&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="exampleTextArea1"&gt;Message&lt;/label&gt;
+      &lt;textarea
+        name="message"
+        id="exampleTextArea1"
+        class="form-control"
+        cols="30"
+        rows="10"
+        required
+      &gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;button class="btn btn-primary"&gt;Send Message&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+          </pre>
           <form id="contact" action="/thank-you.html" method="GET">
             <fieldset>
               <legend>Contact Form Example</legend>
@@ -514,6 +854,7 @@
             read in a similar way to the search form. How this works will be
             covered in the next section.
           </p>
+          </section>
         </section>
         <section id="form-responses"></section>
       </div>

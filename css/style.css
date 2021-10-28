@@ -5,10 +5,15 @@
 @import url('/css/buttons.css');
 @import url('/css/search.css');
 @import url('/css/table.css');
+@import url('/css/navigation.css');
 
-aside {
+pre, aside {
   border-left: 0.5rem solid var(--light);
   padding: 0 1rem;
+}
+
+pre {
+  overflow-x: auto;
 }
 
 code {
